@@ -174,6 +174,7 @@ This can be used to disable the electric keys in e.g. XML tags."
     gmap)
   "The keymap for `typo-global-mode'.")
 
+;;;###autoload
 (define-minor-mode typo-mode
   "Minor mode for typographic editing.
 
@@ -189,6 +190,7 @@ repeatedly.
   :lighter " Typo"
   :keymap typo-mode-map)
 
+;;;###autoload
 (define-minor-mode typo-global-mode
   "Minor mode for typographic editing.
 
