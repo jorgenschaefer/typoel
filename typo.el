@@ -106,6 +106,7 @@
     ;; quotation mark on both sides. En ymmärrä sumalaisen.
     ("Finnish"               "”" "”" "’" "’")
     ("Finnish (Guillemets)"  "»" "»" "›" "›")
+    ("Russian"               "«" "»" "„" "“")
     )
   "*Quotation marks per language."
   :type '(repeat (list (string :tag "Language")
