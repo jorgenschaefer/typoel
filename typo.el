@@ -122,6 +122,7 @@
   :type '(string :tag "Default Language")
   :group 'typo)
 (make-variable-buffer-local 'typo-language)
+(put 'typo-language 'safe-local-variable 'stringp)
 
 (defcustom typo-disable-electricity-functions '(typo-in-xml-tag)
   "*A list of functions to call before an electric key binding is
