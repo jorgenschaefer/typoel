@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2012 Jorgen Schaefer
 
-;; Version: 1.0
+;; Version: 1.1
 ;; Author: Jorgen Schaefer <forcer@forcix.cx>
 ;; URL: https://github.com/jorgenschaefer/typoel
 ;; Created: 6 Feb 2012
