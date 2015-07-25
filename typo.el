@@ -98,7 +98,9 @@
   :group 'convenience)
 
 (defcustom typo-quotation-marks
-  '(("English"               "“" "”" "‘" "’")
+  '(("Czech"                 "„" "“" "‚" "‘")
+    ("Czech (Guillemets)"    "»" "«" "›" "‹")
+    ("English"               "“" "”" "‘" "’")
     ("German"                "„" "“" "‚" "‘")
     ("German (Guillemets)"   "»" "«" "›" "‹")
     ("French"                "«" "»" "‹" "›")
