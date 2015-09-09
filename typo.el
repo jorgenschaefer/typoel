@@ -109,7 +109,7 @@
     ("Finnish"               "”" "”" "’" "’")
     ("Finnish (Guillemets)"  "»" "»" "›" "›")
     ("Russian"               "«" "»" "„" "“")
-    )
+    ("Italian"               "«" "»" "“" "”"))
   "*Quotation marks per language."
   :type '(repeat (list (string :tag "Language")
                        (string :tag "Double Opening Quotation Mark")
