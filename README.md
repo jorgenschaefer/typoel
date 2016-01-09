@@ -23,7 +23,9 @@ context. If it gets it wrong, you can just repeat hitting the " key
 until you get the quotation mark you wanted.
 
 `M-x typo-change-language` lets you change which quotation marks to
-use. This is also configurable, in case you want to add your own.
+use in a single buffer. To change globally, add
+`(setq-default typo-language <language>)` to your initialization
+files. This is also configurable, in case you want to add your own.
 
 ## Dashes and Dots
 
