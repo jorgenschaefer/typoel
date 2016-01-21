@@ -265,7 +265,7 @@ This does not support nested, equal quotation marks."
         (equal open (match-string 0))
       nil)))
 
-(defun typo-insert-quotation-mark ()
+(defun typo-insert-quotation-mark (arg)
   "Insert quotation marks.
 
 This command tries to be intelligent. Opening quotation marks are
@@ -280,9 +280,12 @@ second time, it will open an inner quotation.
 After an opening double quotation mark, the next variant is the
 typewriter quotation mark, making it possible in the usual case
 to simple issue this command twice to get a typewriter quotation
-mark (use C-q \" to force inserting one)."
-  (interactive)
-  (if (typo-electricity-disabled-p)
+mark (use C-q \" or C-o \" to force inserting one).
+
+If used with a numeric prefix argument, only typewriter quotation
+marks will be inserted."
+  (interactive "P")
+  (if (or (typo-electricity-disabled-p) arg)
       (call-interactively 'self-insert-command)
     (let* ((double-open (typo-open-double-quotation-mark))
            (double-close (typo-close-double-quotation-mark))
@@ -331,10 +334,12 @@ mark (use C-q \" to force inserting one)."
       (t
        (insert double-open))))))
 
-(defun typo-cycle-ellipsis ()
-  "Add periods. The third period will add an ellipsis."
-  (interactive)
-  (if (typo-electricity-disabled-p)
+(defun typo-cycle-ellipsis (arg)
+  "Add periods. The third period will add an ellipsis.
+
+If used with a numeric prefix argument N, N periods will be inserted."
+  (interactive "P")
+  (if (or (typo-electricity-disabled-p) arg)
       (call-interactively 'self-insert-command)
     (if (looking-back "\\.\\.")
         (replace-match "…")
@@ -343,14 +348,17 @@ mark (use C-q \" to force inserting one)."
 (defmacro define-typo-cycle (name docstring cycle)
   "Define a typo command that cycles through various options.
 
+If used with a numeric prefix argument N, N standard characters will be
+inserted instead of cycling.
+
 NAME is the name of the command to define.
 DOCSTRING is the docstring for that command.
 
 CYCLE is a list of strings to cycle through."
-  `(defun ,name ()
+  `(defun ,name (arg)
      ,docstring
-     (interactive)
-     (if (typo-electricity-disabled-p)
+     (interactive "P")
+     (if (or (typo-electricity-disabled-p) arg)
          (call-interactively 'self-insert-command)
        (typo-insert-cycle ',cycle))))
 
@@ -390,11 +398,16 @@ CYCLE is a list of strings to cycle through."
     name))
 
 (define-typo-cycle typo-cycle-right-single-quotation-mark
-  "Cycle through the right quotation mark and the typewriter apostrophe."
+  "Cycle through the right quotation mark and the typewriter apostrophe.
+
+If used with a numeric prefix argument N, N typewriter apostrophes
+will be inserted."
   ("’" "'"))
 
 (define-typo-cycle typo-cycle-left-single-quotation-mark
-  "Cycle through the left single quotation mark and the backtick."
+  "Cycle through the left single quotation mark and the backtick.
+
+If used with a numeric prefix argument N, N backticks will be inserted."
   ("‘" "`"))
 
 (define-typo-cycle typo-cycle-dashes
@@ -408,11 +421,15 @@ CYCLE is a list of strings to cycle through."
   ))
 
 (define-typo-cycle typo-cycle-left-angle-brackets
-  "Cycle through the less-than sign and guillemet quotation marks."
+  "Cycle through the less-than sign and guillemet quotation marks.
+
+If used with a numeric prefix argument N, N less-than signs will be inserted."
   ("<" "«" "‹"))
 
 (define-typo-cycle typo-cycle-right-angle-brackets
-  "Cycle through the greater-than sign and guillemet quotation marks."
+  "Cycle through the greater-than sign and guillemet quotation marks.
+
+If used with a numeric prefix argument N, N greater-than signs will be inserted."
   (">" "»" "›"))
 
 (define-typo-cycle typo-cycle-multiplication-signs
