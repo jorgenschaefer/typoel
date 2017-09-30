@@ -161,6 +161,8 @@ This can be used to disable the electric keys in e.g. XML tags."
     (define-key map (kbd ">>") 'typo-cycle-right-angle-brackets)
     (define-key map (kbd "*") 'typo-cycle-multiplication-signs)
     (define-key map (kbd "SPC") 'typo-cycle-spaces)
+    (define-key map (kbd "?") 'typo-cycle-question-mark)
+    (define-key map (kbd "!") 'typo-cycle-exclamation-mark)
     (define-key map (kbd "/=") "≠")
     (define-key map (kbd "//") "÷")
     (define-key map (kbd ">=") "≥")
@@ -449,6 +451,14 @@ If used with a numeric prefix argument N, N greater-than signs will be inserted.
    ;; " " ; EN SPACE
    " " ; SPACE
   ))
+
+(define-typo-cycle typo-cycle-question-mark
+  "Cycle through various interrogatory marks."
+  ("?" "¿" "‽" "⸘" "⸮"))
+
+(define-typo-cycle typo-cycle-exclamation-mark
+  "Cycle through various exclamatory marks."
+  ("!" "¡" "‽" "⸘"))
 
 (provide 'typo)
 ;;; typo.el ends here
