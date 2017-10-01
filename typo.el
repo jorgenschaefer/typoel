@@ -355,6 +355,7 @@ NAME is the name of the command to define.
 DOCSTRING is the docstring for that command.
 
 CYCLE is a list of strings to cycle through."
+  (declare (indent 1) (doc-string 2))
   `(defun ,name (arg)
      ,docstring
      (interactive "P")
