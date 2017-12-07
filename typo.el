@@ -119,7 +119,7 @@
   :group 'typo)
 
 
-(defcustom typo-language (caar typo-quotation-marks)
+(defcustom typo-language "English"
   "*The default language typo-mode should use."
   :type '(string :tag "Default Language")
   :group 'typo)
