@@ -110,7 +110,8 @@
     ("Russian"               "«" "»" "„" "“")
     ("Italian"               "«" "»" "“" "”")
     ("Polish"                "„" "”" "‚" "’")
-    ("Serbian"               "„" "”" "’" "’"))
+    ("Serbian"               "„" "”" "’" "’")
+    ("Ukrainian"             "«" "»" "„" "“"))
   "*Quotation marks per language."
   :type '(repeat (list (string :tag "Language")
                        (string :tag "Double Opening Quotation Mark")
