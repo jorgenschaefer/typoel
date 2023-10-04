@@ -135,7 +135,16 @@ self-inserts.
 
 This can be used to disable the electric keys in e.g. XML tags."
   :type 'hook
-  :options '(typo-in-xml-tag)
+  :options '(typo-in-xml-tag typo-inside-xml-inhibited)
+  :group 'typo)
+
+(defcustom typo-xml-inhibit-tags '("pre" "code" "kbd" "samp")
+  "*A list of XML tags that typo-mode should be inhibited in, if `typo-inside-xml-inhibit` is included in `typo-disable-electricity-functions`.
+
+For example, adding \"code\" to this list would disable smart
+quotations inside of a <code> element."
+
+  :type '(repeat (string :tag "Tag Name"))
   :group 'typo)
 
 (defvar typo-mode-map
@@ -248,6 +257,20 @@ default C-x 8 prefix map.
                              t)
          ;; < without a word char is a math formula
          (looking-at "<\\w"))))
+
+(defun typo-inside-xml-inhibited ()
+  "Return non-nil if the nearest opening tag is in typo-xml-inhibit-tags."
+  (save-excursion
+	;; Search for the nearest open or close XML tag.
+    (and (re-search-backward "</?\\([-_a-zA-Z:]+\\).*?>"
+                             (max (point-min)
+                                  (- (point)
+                                     (* 80 25)))
+                             t)
+		 ;; Check if it's an open tag, and...
+		 (looking-at "<\\w" t)
+		 ;; ...it's contained in `typo-xml-inhibit-tags`.
+         (member (match-string 1) typo-xml-inhibit-tags))))
 
 (defun typo-electricity-disabled-p ()
   "Return non-nil if electricity is disabled at point.
